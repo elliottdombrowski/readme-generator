@@ -15,17 +15,12 @@ const questions = [
     {
         type: 'input',
         name: 'audience',
-        message: 'Who is this app built for?'
-    },
-    {
-        type: 'input',
-        name: 'function',
-        message: 'What is this projects main feature?'
+        message: 'Who is this applications target audience?'
     },
     {
         type: 'input',
         name: 'feature',
-        message: 'What else does this project do?'
+        message: 'Provide a brief description of your project.'
     },
     {
         type: 'input',
@@ -34,13 +29,13 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'contributor',
-        message: 'Who contributed to this project?'
+        name: 'install',
+        message: 'Provide a brief description of how to install this application.'
     },
     {
         type: 'input',
-        name: 'install',
-        message: 'Does this project need to be installed?'
+        name: 'contributor',
+        message: 'Who contributed to this project?'
     },
     {
         type: 'input',
@@ -54,12 +49,23 @@ const questions = [
     }
 ];
 
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+const writeReadMe = (answers) => 
+`# ${answers.title}
 
-const writeReadMe = (answers) => {
-    console.log("fuck");
-}
+## Description 
+###This application was built for ${answers.audience}.
+
+### This application will ${answers.function}. It will also ${answers.feature}.
+
+## Technologies 
+###This project was built with ${answers.tech}.
+
+## Installation 
+### ${answers.install}.
+
+## Contributors 
+### This application was built by ${answers.contributor}.
+`;
 
 // TODO: Create a function to initialize app
 function init() {
