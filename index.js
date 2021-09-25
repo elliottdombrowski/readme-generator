@@ -1,9 +1,7 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 
-// TODO: Create an array of questions for user input
 const generateReadMe = util.promisify(fs.writeFile);
 
 const questions = [
@@ -53,21 +51,35 @@ const writeReadMe = (answers) =>
 `# ${answers.title}
 
 ## Description 
-###This application was built for ${answers.audience}.
+
+### This application was built for ${answers.audience}.
 
 ### This application will ${answers.function}. It will also ${answers.feature}.
 
+
 ## Technologies 
-###This project was built with ${answers.tech}.
+
+### This project was built with ${answers.tech}.
+
 
 ## Installation 
+
 ### ${answers.install}.
 
-## Contributors 
-### This application was built by ${answers.contributor}.
-`;
 
-// TODO: Create a function to initialize app
+## Contributors 
+
+### This application was built by ${answers.contributor}.
+
+
+## Questions
+
+### Contact me with further questions here-
+[${answers.github}](https://github.com/${answers.github})<br />
+${answers.email}
+`;
+//TODO- ADD COMMENTS AND LINKS, BADGE, FORMATTING
+
 function init() {
     promptUser()
         .then((answers) => generateReadMe('README.md', writeReadMe(answers)))
@@ -79,5 +91,4 @@ function promptUser() {
     return inquirer.prompt(questions);
 }
 
-// Function call to initialize app
 init();
