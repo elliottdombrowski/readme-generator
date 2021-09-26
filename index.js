@@ -21,6 +21,11 @@ const questions = [
         message: 'Provide a brief description of your project.'
     },
     {
+        type: 'input', 
+        name: 'usage',
+        message: 'Please provide basic instruction on how to use this application.'
+    },
+    {
         type: 'input',
         name: 'tech',
         message: 'What technology was this project built with?'
@@ -52,31 +57,39 @@ const writeReadMe = (answers) =>
 
 ## Description 
 
-### This application was built for ${answers.audience}.
+### This application was built for ${answers.audience}.<br />
+This application will ${answers.function}. It will also ${answers.feature}.<br />
 
-### This application will ${answers.function}. It will also ${answers.feature}.
+---
 
+## Table Of Contents
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributors](#contributors)
+- [Contact](#questions)
+- [License](#license)
+
+---
 
 ## Technologies 
-
-### This project was built with ${answers.tech}.
+### This project was built with ${answers.tech}.<br />
 
 
 ## Installation 
+### ${answers.install}.<br />
 
-### ${answers.install}.
-
+## Usage
+### ${answers.usage}<br />
 
 ## Contributors 
-
-### This application was built by ${answers.contributor}.
+### This application was built by ${answers.contributor}.<br />
 
 
 ## Questions
-
 ### Contact me with further questions here-
-[${answers.github}](https://github.com/${answers.github})<br />
-${answers.email}
+- [${answers.github}](https://github.com/${answers.github})
+- ${answers.email}
 `;
 //TODO- ADD COMMENTS AND LINKS, BADGE, FORMATTING
 
