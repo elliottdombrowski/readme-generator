@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+const licenseInfo = require("./license.js");
 
 const generateReadMe = util.promisify(fs.writeFile);
 
@@ -49,16 +50,39 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'What is your email?'
-    }
+    },
+    {
+        type: "list",
+        name: "license",
+        message: "Does your project have a license?",
+        choices: [
+          "mit",
+          "lgpl-3.0",
+          "mpl-2.0",
+          "agpl-3.0",
+          "unlicense",
+          "apache-2.0",
+          "gpl-3.0",
+          "gpl-2.0",
+          "epl-1.0",
+          "cc0-1.0",
+          "bsd-3-clause",
+          "bsd-2-clause",
+          "wtfpl",
+          "artistic-2.0",
+          "zlib",
+        ],
+    },
 ];
 
 const writeReadMe = (answers) => 
 `# ${answers.title}
+${answers.license}
 
 ## Description 
 
 ### This application was built for ${answers.audience}.<br />
-This application will ${answers.function}. It will also ${answers.feature}.<br />
+${answers.feature}.<br />
 
 ---
 
@@ -81,6 +105,9 @@ This application will ${answers.function}. It will also ${answers.feature}.<br /
 
 ## Usage
 ### ${answers.usage}<br />
+
+## License
+### ${answers.license}
 
 ## Contributors 
 ### This application was built by ${answers.contributor}.<br />
