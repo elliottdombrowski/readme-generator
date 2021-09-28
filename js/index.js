@@ -1,7 +1,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-const licenseInfo = require("./license.js");
+
+const writeReadMe = require('./generate');
+const LicenseInfo = require('./licenseInfo');
+const licenseBadge = require('./licensebadge');
 
 const generateReadMe = util.promisify(fs.writeFile);
 
@@ -75,57 +78,22 @@ const questions = [
     },
 ];
 
-const writeReadMe = (answers) => 
-`# ${answers.title}
-${answers.license}
 
-## Description 
-
-### This application was built for ${answers.audience}.<br />
-${answers.feature}.<br />
-
----
-
-## Table Of Contents
-- [Technologies](#technologies)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributors](#contributors)
-- [Contact](#questions)
-- [License](#license)
-
----
-
-## Technologies 
-### This project was built with ${answers.tech}.<br />
-
-
-## Installation 
-### ${answers.install}.<br />
-
-## Usage
-### ${answers.usage}<br />
-
-## License
-### ${answers.license}
-
-## Contributors 
-### This application was built by ${answers.contributor}.<br />
-
-
-## Questions
-### Contact me with further questions here-
-- [${answers.github}](https://github.com/${answers.github})
-- ${answers.email}
-`;
 //TODO- ADD COMMENTS AND LINKS, BADGE, FORMATTING
+
+function addLicense(answers) {
+    answers["licenseBody"] = licenseBadge(answers.license);
+    answers["licenseInfo"] = licenseInfo(answers.license);
+    return answers;
+}
 
 function init() {
     promptUser()
-        .then((answers) => generateReadMe('README.md', writeReadMe(answers)))
+        .then((answers) => generateReadMe('README.md', writeReadMe(addLicense(answers))))
         .then(() => console.log("made ya a readme"))
         .catch((err) => console.log(err));
 }
+
 
 function promptUser() {
     return inquirer.prompt(questions);

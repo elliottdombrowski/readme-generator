@@ -1,11 +1,5 @@
-const axios = require("axios");
-
-const LicenseInfo = (license) => {
-  return axios.get("https://api.github.com/licenses/" + license);
-};
-
 // Function that retrieves the code to display the license badge at the top of the README
-let findLicense = (license) => {
+let licenseBadge = (license) => {
     if (license === "mit") {
       return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
     }
@@ -51,9 +45,7 @@ let findLicense = (license) => {
     if (license === "zlib") {
       return "[![License: Zlib](https://img.shields.io/badge/License-Zlib-lightgrey.svg)](https://opensource.org/licenses/Zlib)";
     }
+    return null
   };
-
-  module.exports = {
-      LicenseInfo,
-      findLicense,
-  };
+  // getBadge is exported so it can be used in index.js
+  module.exports = licenseBadge;
