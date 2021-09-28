@@ -3,7 +3,7 @@ const fs = require('fs');
 const util = require('util');
 
 const writeReadMe = require('./generate');
-const LicenseInfo = require('./licenseInfo');
+const licenseInfo = require('./licenseInfo');
 const licenseBadge = require('./licensebadge');
 
 const generateReadMe = util.promisify(fs.writeFile);
@@ -81,15 +81,17 @@ const questions = [
 
 //TODO- ADD COMMENTS AND LINKS, BADGE, FORMATTING
 
-function addLicense(answers) {
+async function addLicense(answers) {
     answers["licenseBody"] = licenseBadge(answers.license);
-    answers["licenseInfo"] = licenseInfo(answers.license);
+    await licenseInfo(answers.license)
+            .then((info) => answers["licenseInfo"] = info.data.description)
     return answers;
 }
 
 function init() {
     promptUser()
-        .then((answers) => generateReadMe('README.md', writeReadMe(addLicense(answers))))
+        .then((answers) => (addLicense(answers)))
+        .then((answers) => generateReadMe('README.md', writeReadMe(answers)))
         .then(() => console.log("made ya a readme"))
         .catch((err) => console.log(err));
 }
