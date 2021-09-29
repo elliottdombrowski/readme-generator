@@ -14,6 +14,7 @@ ${answers.feature}.<br />
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Tests](#tests)
 - [Contributors](#contributors)
 - [Contact](#questions)
 - [License](#license)
@@ -29,6 +30,9 @@ ${answers.feature}.<br />
 
 ## Usage
 ### ${answers.usage}<br />
+
+## Tests
+### There are currently no tests for this project.<br />
 
 ## License
 ### ${answers.license}<br />

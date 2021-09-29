@@ -91,7 +91,7 @@ async function addLicense(answers) {
 function init() {
     promptUser()
         .then((answers) => (addLicense(answers)))
-        .then((answers) => generateReadMe('README.md', writeReadMe(answers)))
+        .then((answers) => generateReadMe('genREADME.md', writeReadMe(answers)))
         .then(() => console.log("made ya a readme"))
         .catch((err) => console.log(err));
 }
