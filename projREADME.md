@@ -34,6 +34,11 @@ This project will generate a README file for your project based off user input. 
 
 ![Screenshot](imgs/screenshot2.png)
 
+---
+
+### The video linked below will provide a brief walkthrough on how to use this application.
+https://drive.google.com/file/d/1EQp6PHxqCA0fj2GB3BaTcW_xPjKO-qw7/view
+
 ## Tests
 ### There are currently no tests for this project.<br />
 
